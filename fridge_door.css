@@ -1,0 +1,27 @@
+button:hover {
+    background-color:#D6DFb2;
+    border:1px solid #C6D880;
+}
+
+button:active {
+    background-color:#529214;
+    border:1px solid #529214;
+    color:#fff;
+}
+
+/*******/
+
+#main {
+    margin: 20px;
+}
+
+#left {
+    float: left;
+    width: 40%;
+}
+
+#right {
+    float: left;
+    width: 50%;
+}
+

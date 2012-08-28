@@ -1,0 +1,52 @@
+<body>
+  <div id="main">
+    <div id="left">
+      <h1>Refrigerator!</h1>
+      {{> kitchen}}
+    </div>
+    <div id="right">
+      {{> fridge}}
+    </div>
+</body>
+
+
+<template name="kitchen">
+  <h1>Select your fridge</h1>
+  {{> new_fridge}}
+  {{#each fridges}}
+    {{> fridge_info}}
+  {{/each}}
+  <input type="button" class="select" value="Go to Fridge"/>
+</template>
+
+<template name="new_fridge">
+  <div class="new_fridge">
+    <input type="text" id="new_fridge_name" />
+    <input type="button" class="add" value="Create Fridge"/>
+  </div>
+</template>
+
+<template name="fridge_info">
+  <div class="{{maybe_selected}}">
+    {{name}}
+  </div>
+</template>
+
+<template name="fridge">
+  {{#if selected_fridge}}
+    {{#with selected_fridge}}
+      <h1>{{name}}</h1>
+      {{> new_post}}
+      {{#each posts}}
+        <div> {{content}} </div>
+      {{/each}}
+    {{/with}}
+  {{/if}}
+</template>
+
+<template name="new_post">
+  <div class="new_post">
+    <input type="text" id="new_post_content" />
+    <input type="button" class="add" value="Add post"/>
+  </div>
+</template>
