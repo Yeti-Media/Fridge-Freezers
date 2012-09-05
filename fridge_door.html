@@ -39,14 +39,16 @@
       {{> new_post}}
       {{#each posts}}
         <div> {{content}} </div>
+        <img src="{{content}}" />
       {{/each}}
     {{/with}}
   {{/if}}
 </template>
 
 <template name="new_post">
-  <div class="new_post">
+  <form class="new_post">
+    <div> pic url </div>
     <input type="text" id="new_post_content" />
     <input type="button" class="add" value="Add post"/>
-  </div>
+  </form>
 </template>

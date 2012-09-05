@@ -36,9 +36,31 @@ if (Meteor.is_client) {
 
   Template.new_post.events = {
     'click input.add': function () {
+
       var new_post = document.getElementById("new_post_content").value;
       var fridge = Session.get("selected_fridge");      
       Posts.insert({content: new_post, fridgeId: fridge });
+
+
+      // var new_post = document.getElementById("new_post_content").value,
+      //     fridge = Session.get("selected_fridge"),
+      //     file = document.getElementById("file_select").value,
+      //     url = "http://www.upscrn.com/screenshots.json",
+      //     auth_token = "HzLAa1SsZqs4FZKqa1pF";
+
+  
+     //  var fd = new FormData();
+     //  fd.append("image", file); // Append the file
+     //  fd.append("key", "2801fba6816339b659a2be140fe7460a"); // Get your own key: http://api.imgur.com/
+
+     //  var xhr = new XMLHttpRequest();
+     //  xhr.open("POST", "http://api.imgur.com/2/upload.json"); // Boooom!
+     //  xhr.onload = function() {
+     //     // The URL of the image is:
+     //     JSON.parse(xhr.responseText);
+     //  }
+
+     // xhr.send(fd);    
     }
   };
 
@@ -55,3 +77,4 @@ if (Meteor.is_server) {
     // });
   });
 }
+
