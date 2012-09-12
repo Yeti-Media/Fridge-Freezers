@@ -39,16 +39,31 @@
       {{> new_post}}
       {{#each posts}}
         <div> {{content}} </div>
-        <img src="{{content}}" />
+        <div> {{type}} </div>
+        {{#if type_is "image"}}
+          <img src="{{content}}" />
+        {{/if}}
+        {{#if type_is "video"}}
+          <iframe src="{{content}}"></iframe>
+        {{/if}}
+        {{#if type_is "text"}}
+          <div>"{{content}}"</div>
+        {{/if}}
+
       {{/each}}
     {{/with}}
   {{/if}}
 </template>
 
 <template name="new_post">
-  <form class="new_post">
-    <div> pic url </div>
+  <div class="new_post">
+    <div> content </div>
     <input type="text" id="new_post_content" />
     <input type="button" class="add" value="Add post"/>
-  </form>
+    <div id="post_type">
+      <input type="radio" name="post_type" value="image">Pic</input>
+      <input type="radio" name="post_type" value="video">Video</input>
+      <input type="radio" name="post_type" value="text">Text</input>        
+    </div>
+  </div>
 </template>

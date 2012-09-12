@@ -25,6 +25,10 @@ if (Meteor.is_client) {
     }
   };
 
+  Template.fridge.type_is = function(type){
+    return this.type === type;
+  }
+
   Template.fridge.posts = function () {
     var fridge = Session.get("selected_fridge");      
     return Posts.find({fridgeId: fridge})
@@ -38,9 +42,16 @@ if (Meteor.is_client) {
     'click input.add': function () {
 
       var new_post = document.getElementById("new_post_content").value;
-      var fridge = Session.get("selected_fridge");      
-      Posts.insert({content: new_post, fridgeId: fridge });
+      var fridge = Session.get("selected_fridge");
+      var radio = document.getElementById("post_type");  
+      var post_type;
 
+      for (i=0; i < radio.length;i++){
+        if(radio[i].checked==true){
+          post_type = radio[i].value;
+      }};
+
+      Posts.insert({content: new_post, fridgeId: fridge, type: post_type });
 
       // var new_post = document.getElementById("new_post_content").value,
       //     fridge = Session.get("selected_fridge"),
