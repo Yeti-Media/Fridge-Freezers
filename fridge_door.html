@@ -37,9 +37,8 @@
     {{#with selected_fridge}}
       <h1>{{name}}</h1>
       {{> new_post}}
+      <div>{{preview}}</div>
       {{#each posts}}
-        <div> {{content}} </div>
-        <div> {{type}} </div>
         {{#if type_is "image"}}
           <img src="{{content}}" />
         {{/if}}
@@ -47,7 +46,7 @@
           <iframe src="{{content}}"></iframe>
         {{/if}}
         {{#if type_is "text"}}
-          <div>"{{content}}"</div>
+          <div>{{content}}</div>
         {{/if}}
 
       {{/each}}
@@ -57,13 +56,12 @@
 
 <template name="new_post">
   <div class="new_post">
-    <div> content </div>
     <input type="text" id="new_post_content" />
     <input type="button" class="add" value="Add post"/>
     <div id="post_type">
-      <input type="radio" name="post_type" value="image">Pic</input>
-      <input type="radio" name="post_type" value="video">Video</input>
-      <input type="radio" name="post_type" value="text">Text</input>        
+      <input type="radio" name="post_type" value="image" class="post_type">Pic</input>
+      <input type="radio" name="post_type" value="video"class="post_type">Video</input>
+      <input type="radio" name="post_type" value="text"class="post_type">Text</input>        
     </div>
   </div>
 </template>
