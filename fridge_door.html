@@ -1,35 +1,44 @@
 <body>
-  <div id="main">
-    <div id="left">
-      <h1>Refrigerator!</h1>
-      {{> kitchen}}
+  <div class="container">
+    <div id="main" class="row">
+      <div  class="span6 offset2 well pull-center">
+        <h1>Virtual Freezer Fridges</h1>
+        {{> kitchen}}
+      </div>
     </div>
-    <div id="right">
+
+    <div id="freezer" class="row">
       {{> fridge}}
     </div>
+  </div>
 </body>
 
 
 <template name="kitchen">
-  <h1>Select your fridge</h1>
+  <h2>Create your fridge</h2>
   {{> new_fridge}}
-  {{#each fridges}}
-    {{> fridge_info}}
-  {{/each}}
-  <input type="button" class="select" value="Go to Fridge"/>
+  <div id="existent_friges">
+    <h2 class="text-success"> Or Pick an existent Fridge</h2>
+    {{#each fridges}}
+      {{> fridge_info}}
+    {{/each}}
+  </div>
 </template>
 
 <template name="new_fridge">
   <div class="new_fridge">
-    <input type="text" id="new_fridge_name" />
-    <input type="button" class="add" value="Create Fridge"/>
+    <form>
+      <input type="text" id="new_fridge_name" placeholder="Type a new name..." />
+      <div class="clear"></div>
+      <button class="add btn btn-success">Create Fridge</button>
+    </form>
   </div>
 </template>
 
 <template name="fridge_info">
-  <div class="{{maybe_selected}}">
+  <span class="{{maybe_selected}} btn btn-info ">
     {{name}}
-  </div>
+  </span>
 </template>
 
 <template name="fridge">
@@ -37,19 +46,21 @@
     {{#with selected_fridge}}
       <h1>{{name}}</h1>
       {{> new_post}}
-      <div>{{preview}}</div>
-      {{#each posts}}
-        {{#if type_is "image"}}
-          <img src="{{content}}" />
-        {{/if}}
-        {{#if type_is "video"}}
-          <iframe src="{{content}}"></iframe>
-        {{/if}}
-        {{#if type_is "text"}}
-          <div>{{content}}</div>
-        {{/if}}
+      <div>{{{preview}}}</div>
+      <div id="freezer" class="well freezer">
+          {{#each posts}}
+            {{#if type_is "image"}}
+              <img src="{{content}}" />
+            {{/if}}
+            {{#if type_is "video"}}
+            {{{ content }}}
+            {{/if}}
+            {{#if type_is "text"}}
+              <div>{{content}}</div>
+            {{/if}}
 
-      {{/each}}
+          {{/each}}
+      </div>
     {{/with}}
   {{/if}}
 </template>
@@ -57,11 +68,11 @@
 <template name="new_post">
   <div class="new_post">
     <input type="text" id="new_post_content" />
-    <input type="button" class="add" value="Add post"/>
-    <div id="post_type">
+    <input type="button" class="add btn" value="Add post"/>
+    <div id="post_types">
       <input type="radio" name="post_type" value="image" class="post_type">Pic</input>
       <input type="radio" name="post_type" value="video"class="post_type">Video</input>
-      <input type="radio" name="post_type" value="text"class="post_type">Text</input>        
+      <input type="radio" name="post_type" value="text"class="post_type">Text</input>
     </div>
   </div>
 </template>
