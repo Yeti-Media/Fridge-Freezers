@@ -7,6 +7,19 @@ if (Meteor.is_client) {
     return Fridges.find({})
   };
 
+  Template.kitchen.latest_fridges = function(){
+    var fridges = Fridges.find({}).fetch();
+    return fridges.reverse().slice(0,5);
+  };
+
+  Template.kitchen.active_fridges = function(){
+    var posts = Posts.find({}).fetch();
+    for (i=0; i<posts.length; i++){
+      posts[i].fridgeName
+    }
+    return Fridges.find({})
+  };
+
   Template.new_fridge.events = {
     'click input.add': function () {
       var new_fridge = document.getElementById("new_fridge_name").value;

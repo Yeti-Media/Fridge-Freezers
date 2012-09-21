@@ -11,16 +11,17 @@
 
 
 <template name="kitchen">
-  <h1>Select your fridge</h1>
   {{> new_fridge}}
-  {{#each fridges}}
+  <h1>Or select an existing one</h1>
+  <h1>Latest Fridges</h1>
+  {{#each latest_fridges}}
     {{> fridge_info}}
   {{/each}}
-  <input type="button" class="select" value="Go to Fridge"/>
 </template>
 
 <template name="new_fridge">
   <div class="new_fridge">
+    <h1> Create your frige </h1>
     <input type="text" id="new_fridge_name" />
     <input type="button" class="add" value="Create Fridge"/>
   </div>
