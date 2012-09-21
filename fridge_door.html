@@ -18,8 +18,9 @@
   <h2>Create your fridge</h2>
   {{> new_fridge}}
   <div id="existent_friges">
-    <h2 class="text-success"> Or Pick an existent Fridge</h2>
-    {{#each fridges}}
+    <h2 class="text-success"> Or pick an existent Fridge</h2>
+    <h3 class="text-success">Latest</h3>
+    {{#each latest_fridges}}
       {{> fridge_info}}
     {{/each}}
   </div>
@@ -42,27 +43,26 @@
 </template>
 
 <template name="fridge">
-  {{#if selected_fridge}}
-    {{#with selected_fridge}}
-      <h1>{{name}}</h1>
-      {{> new_post}}
-      <div>{{{preview}}}</div>
-      <div id="freezer" class="well freezer">
-          {{#each posts}}
-            {{#if type_is "image"}}
-              <img src="{{content}}" />
-            {{/if}}
-            {{#if type_is "video"}}
-            {{{ content }}}
-            {{/if}}
-            {{#if type_is "text"}}
-              <div>{{content}}</div>
-            {{/if}}
+  {{#with selected_fridge}}
+    <h1>{{name}}</h1>
+    <a href="#" class='backto'> Back to kitchen</a>
+    {{> new_post}}
+    <div>{{{preview}}}</div>
+    <div id="freezer" class="well freezer">
+        {{#each posts}}
+          {{#if type_is "image"}}
+            <img src="{{content}}" />
+          {{/if}}
+          {{#if type_is "video"}}
+          {{{ content }}}
+          {{/if}}
+          {{#if type_is "text"}}
+            <div>{{content}}</div>
+          {{/if}}
 
-          {{/each}}
-      </div>
-    {{/with}}
-  {{/if}}
+        {{/each}}
+    </div>
+  {{/with}}
 </template>
 
 <template name="new_post">
