@@ -72,19 +72,21 @@ if (Meteor.is_client) {
     'click input.add': function () {
 
       var new_post = document.getElementById("new_post_content").value;
-      var fridge = Session.get("selected_fridge");
-      var radio = document.getElementById("post_type");  
-      var post_type;
-      var exists = Fridges.findOne({name: fridge});
 
-      console.log(radio);
-      // for (i=0; i < radio.length;i++){
-      //   if(radio[i].checked==true){
-      //     post_type = radio[i].value;
-      // }};
+      function addPost(content, type) {
+        var fridge = Session.get("selected_fridge");
+        Posts.insert({content: content, fridgeName: fridge, type: type });
+      }
 
-      post_type = 'text'
-      Posts.insert({content: new_post, fridgeName: fridge, type: post_type });
+      function IsValidImageUrl(url, callback) {
+          var img = new Image();
+          img.onerror = function() { callback(url, 'text'); }
+          img.onload =  function() { callback(url, 'image'); }
+          img.src = url
+      }
+
+
+      IsValidImageUrl(new_post, addPost);
     }
   };
 
