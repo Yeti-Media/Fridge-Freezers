@@ -1,3 +1,4 @@
+
 <body>
   <div class="container">
     <div id="main" class="row">
@@ -11,6 +12,7 @@
       {{> fridge}}
     </div>
   </div>
+  <link rel="stylesheet" href="/mediaelementplayer.css" />
 </body>
 
 
@@ -54,7 +56,11 @@
             <img src="{{content}}" />
           {{/if}}
           {{#if type_is "video"}}
-          {{{ content }}}
+
+            <video width="640" height="360" class="video_player" preload="none">
+              <source type="video/{{video_type}}"
+              src="{{ content }}" />
+            </video>
           {{/if}}
           {{#if type_is "text"}}
             <div>{{content}}</div>
@@ -76,3 +82,4 @@
     </div>
   </div>
 </template>
+
