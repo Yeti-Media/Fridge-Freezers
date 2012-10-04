@@ -68,9 +68,17 @@ if (Meteor.is_client) {
   Template.fridge.events = {
     'click a.backto' : function(){
       $('#main').show();
-      $('.video_player').mediaelementplayer();
       $('#freezer').hide();
     }
+  }
+
+  Template.fridge.rendered = function (){
+    $('.video_player').each(function(i,e){
+      var id = $(e).attr('data-id');
+      var url = $(e).attr('data-url');
+      console.log(e);
+      var example = Popcorn.youtube('#video_player_' + id, url );
+    })
   }
 
   Template.new_post.events = {

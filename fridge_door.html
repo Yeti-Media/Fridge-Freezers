@@ -17,7 +17,7 @@
 
 
 <template name="kitchen">
-  <h2>Create your fridge</h2>
+  <h2>Create your fridge</h2>per
   {{> new_fridge}}
   <div id="existent_friges">
     <h2 class="text-success"> Or pick an existent Fridge</h2>
@@ -56,11 +56,7 @@
             <img src="{{content}}" />
           {{/if}}
           {{#if type_is "video"}}
-
-            <video width="640" height="360" class="video_player" preload="none">
-              <source type="video/{{video_type}}"
-              src="{{ content }}" />
-            </video>
+            <div class="video_player" id='video_player_{{_id}}' data-url="{{content}}" data-id="{{_id}}" style="width: 480px; height:320px"></div>
           {{/if}}
           {{#if type_is "text"}}
             <div>{{content}}</div>
